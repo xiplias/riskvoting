@@ -14,12 +14,14 @@
 <template name="content">
  <div class="leaderboard">
     <div>
+      {{updateAvatar}}
       <h1>Keynote bingo</h1>
         Vote closes just before the keynote<br><abbr class="timeago" title="2013-09-10T16:00:17Z">September 10, 2013 19.00 CET</abbr>
         <br>
         {{#if currentUser}}
         <div class="votesLeft">{{votesLeft}} votes left</div>
         {{/if}}
+      
 
     </div>
     <div class="leaderboarding">

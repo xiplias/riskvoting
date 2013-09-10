@@ -3,7 +3,7 @@
 
 var avatar = function (id) {
   var email = Meteor.users.findOne({_id: id}).services.github.email
-  return "http://www.gravatar.com/avatar/" + CryptoJS.MD5(email)
+  return Meteor.user().avatar || "http://www.gravatar.com/avatar/" + CryptoJS.MD5(email)
 }
 
 Rumors = new Meteor.Collection("rumors");
@@ -20,6 +20,12 @@ if (Meteor.isClient) {
   Template.content.votesLeft = function () {
     if(Meteor.user()) {
       return 5 - (Meteor.user().voteCount || 0);
+    }
+  }
+
+  Template.content.updateAvatar = function () {
+    if(Meteor.user()) {
+      Meteor.calculateScore('updateAvatar', "http://www.gravatar.com/avatar/" + CryptoJS.MD5(Meteor.user().services.github.email));
     }
   }
 
@@ -88,7 +94,7 @@ if (Meteor.isClient) {
 // On server startup, create some rumors if the database is empty.
 if (Meteor.isServer) {
   Meteor.publish(null, function () {
-    return Meteor.users.find({}, {fields: { username: 1, profile: 1, voteCount: 1, isAdmin: 1, score: 1}});
+    return Meteor.users.find({}, {fields: { username: 1, profile: 1, voteCount: 1, isAdmin: 1, score: 1, avatar: 1}});
   });
 
   Meteor.users.deny(function () {
@@ -97,26 +103,26 @@ if (Meteor.isServer) {
 
   Meteor.methods({
     toggleVote: function (rumor) {
-      var user = Meteor.user();
-      var votes = rumor.votes || [];
-      var voteCount = user.voteCount || 0;
+      if(Date.now() < 1378832890140) {
+        var user = Meteor.user();
+        var votes = rumor.votes || [];
+        var voteCount = user.voteCount || 0;
 
-      if (user && voteCount < 5 && !_.include(votes, user._id)) {
-        votes.push(user._id);
-
-        Rumors.update({_id: rumor._id}, {$set: { votes: votes }});
-        Meteor.users.update({_id: user._id}, {$set: { voteCount: voteCount+1}})
-      } else {
-        var count = votes.length;
-        var votes = _.without(votes, user._id);
-        
-
-        if(votes.length < count) {
+        if (user && voteCount < 5 && !_.include(votes, user._id)) {
+          votes.push(user._id);
 
           Rumors.update({_id: rumor._id}, {$set: { votes: votes }});
-          Meteor.users.update({_id: user._id}, {$set: { voteCount: voteCount-1}})         
+          Meteor.users.update({_id: user._id}, {$set: { voteCount: voteCount+1}})
+        } else {
+          var count = votes.length;
+          var votes = _.without(votes, user._id);
+          
+          if(votes.length < count) {
+            Rumors.update({_id: rumor._id}, {$set: { votes: votes }});
+            Meteor.users.update({_id: user._id}, {$set: { voteCount: voteCount-1}})         
+          }
         }
-      }
+      } 
     },
     toggleValidate: function (rumor) {
       if(Meteor.user().isAdmin === true) {
@@ -145,6 +151,10 @@ if (Meteor.isServer) {
           Meteor.users.update({_id: id}, {$set: {score: score}});
         });
       }
+    },
+    updateAvatar: function (url) {
+      console.log('avatar')
+      Meteor.users.update({_id: Meteor.user()._id}, {$set: {avatar: url}});
     }
   })
 }
