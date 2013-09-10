@@ -4,7 +4,6 @@
   <script type="text/javascript" src="//use.typekit.net/mix5onh.js"></script>
 <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
   <script type="text/javascript" src="/jquery.timeago.js"></script>
-  <script type="text/javascript" src="/color.js"></script>
 </head>
 
 <body>
@@ -14,7 +13,6 @@
 <template name="content">
  <div class="leaderboard">
     <div>
-      {{updateAvatar}}
       <h1>Keynote bingo</h1>
         Vote closes just before the keynote<br><abbr class="timeago" title="2013-09-10T16:00:17Z">September 10, 2013 19.00 CET</abbr>
         <br>
@@ -49,7 +47,7 @@
     <table>
       {{#each users}}
         <tr>
-          <td class="user-avatar"><img src="{{avatar}}" width="50" class="avatar"></td>
+          <td class="user-avatar"><img src="{{avatar}}?d=retro" width="50" class="avatar"></td>
           <td class="user-name">{{profile.name}}</td>
           <td class="user-score">{{score}}</td>
         </tr>
@@ -68,7 +66,7 @@
       <div class='rumor-users'>
         <span class='rumor-total-votes'>{{totalVotes}} Votes
         {{#each votes}}
-          <img src='{{avatar}}' width="30" class="avatar">
+          <img src='{{avatar}}' width="30" class="avatar" alt="{{avatarName}}">
         {{/each}}
       </div>
     </div>

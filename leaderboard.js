@@ -50,6 +50,7 @@ if (Meteor.isClient) {
     return (this.votes || []).length
   }
 
+
   Template.addRumor.events({
     'click #rumor_submit': function (events) {
       console.log('test');
@@ -74,10 +75,7 @@ if (Meteor.isClient) {
   Template.rumors.events({
     'click .rumor': function (event) {
       Meteor.call('toggleVote', this, function () {
-        Meteor.defer(function () {
-          $("#" + this._id).hide();
 
-        });
       });
 
       return false;
@@ -92,6 +90,16 @@ if (Meteor.isClient) {
 
   Template.rumors.avatar = function () {
     return avatar(this.toString());
+  }
+
+  Template.rumors.avatarName = function () {
+
+    var user = Meteor.users.findOne({_id: this.toString()});
+    
+    if(user && user.profile) {
+      return user.profile.name
+    }
+    
   }
 }
 
@@ -155,6 +163,19 @@ if (Meteor.isServer) {
     updateAvatar: function (url) {
       console.log('avatar')
       Meteor.users.update({_id: Meteor.user()._id}, {$set: {avatar: url}});
+    },
+    massAvatarUpdate: function () {
+      Meteor.users.find({}).forEach(function (user) {
+        res = Meteor.http.call("GET", "https://api.github.com/user", {
+          params: {
+            access_token: user.services.github.accessToken
+          },
+          headers: {
+            "User-Agent": "Meteor"
+          }
+        });
+        Meteor.users.update({_id: user._id}, {$set: {avatar: res.data.avatar_url}})
+      });
     }
   })
 }
