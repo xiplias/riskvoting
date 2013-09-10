@@ -3,7 +3,7 @@
 
 var avatar = function (id) {
   var email = Meteor.users.findOne({_id: id}).services.github.email
-  if(Meteor.user()) return Meteor.users.findOne({_id: id}).avatar
+  return Meteor.users.findOne({_id: id}).avatar
 }
 
 Rumors = new Meteor.Collection("rumors");
