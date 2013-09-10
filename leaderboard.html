@@ -28,6 +28,10 @@
     {{#if currentUser.isAdmin}}
       {{> addRumor}}
     {{/if}}
+
+    {{#unless currentUser}}
+      <h2>You need to login to vote</h2>
+    {{/unless}}
     {{loginButtons}}
   </div>
   <div class="rumors">

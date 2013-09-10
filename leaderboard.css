@@ -49,12 +49,15 @@ body {
   font-size: 1.5em;
   color: #2c3e50;
   height: 45px;
+  line-height: 1;
 }
 
 .myvote {
   border: 3px #2c3e50 solid;
   width: 254px;
   height: 93px;
+  padding-top: 17px;
+  padding-bottom: 24px;
 }
 
 .validated {
