@@ -3,7 +3,8 @@
   "dependencies": {
     "basePackages": {
       "crypto-md5": {},
-      "moment": {}
+      "moment": {},
+      "event-hooks": {}
     },
     "packages": {
       "crypto-md5": {
@@ -15,6 +16,11 @@
         "git": "https://github.com/possibilities/meteor-moment.git",
         "tag": "v1.7.0",
         "commit": "c64b6ec0e714b9556f4b6643d430b868ba69d3d7"
+      },
+      "event-hooks": {
+        "git": "https://github.com/BenjaminRH/meteor-event-hooks.git",
+        "tag": "v1.4.3",
+        "commit": "ba4f3d7887748458618d29615492906f0c88d31c"
       },
       "crypto-base": {
         "git": "https://github.com/tmeasday/meteor-crypto-base.git",

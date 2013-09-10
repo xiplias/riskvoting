@@ -3,12 +3,23 @@
 
 var avatar = function (id) {
   var email = Meteor.users.findOne({_id: id}).services.github.email
-  return Meteor.user().avatar
+  if(Meteor.user()) return Meteor.user().avatar
 }
 
 Rumors = new Meteor.Collection("rumors");
 
 if (Meteor.isClient) {
+  Meteor.startup(function(){
+    Hooks.init();
+  });
+
+  Hooks.onLoggedIn = function (userId) {
+    console.log("login")
+    if(Meteor.user() && Meteor.user().avatar === undefined) {
+      Meteor.call('updateAvatar', "http://www.gravatar.com/avatar/" + CryptoJS.MD5(Meteor.user().services.github.email));
+    }
+  }
+
   Template.leaderboard.users = function () {
     return Meteor.users.find({}, {sort: {score: -1}});
   }
@@ -20,12 +31,6 @@ if (Meteor.isClient) {
   Template.content.votesLeft = function () {
     if(Meteor.user()) {
       return 5 - (Meteor.user().voteCount || 0);
-    }
-  }
-
-  Template.content.updateAvatar = function () {
-    if(Meteor.user() && Meteor.user().avatar === undefined) {
-      Meteor.calculateScore('updateAvatar', "http://www.gravatar.com/avatar/" + CryptoJS.MD5(Meteor.user().services.github.email));
     }
   }
 
@@ -95,10 +100,6 @@ if (Meteor.isClient) {
 if (Meteor.isServer) {
   Meteor.publish(null, function () {
     return Meteor.users.find({}, {fields: { username: 1, profile: 1, voteCount: 1, isAdmin: 1, score: 1, avatar: 1}});
-  });
-
-  Meteor.users.deny(function () {
-
   });
 
   Meteor.methods({

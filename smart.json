@@ -1,6 +1,7 @@
 {
   "packages": {
     "crypto-md5": {},
-    "moment": {}
+    "moment": {},
+    "event-hooks": {}
   }
 }
