@@ -20,6 +20,7 @@ if (Meteor.isClient) {
   }
 
   Template.content.rendered = function () {
+    jQuery.timeago.settings.allowFuture = true;
     jQuery("abbr.timeago").timeago();
   }
 
