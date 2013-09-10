@@ -169,7 +169,7 @@ if (Meteor.isServer) {
         Meteor.users.find({}).forEach(function (user) {
           console.log(user.services.github.email, user._id, user.services.github.email || user._id);
           if(go) {
-            Meteor.users.update({_id: user._id}, {$set: {avatar: "http://www.gravatar.com/avatar/" + CryptoJS.MD5(user.services.github.email)}});
+            Meteor.users.update({_id: user._id}, {$set: {avatar: "http://www.gravatar.com/avatar/" + CryptoJS.MD5(user.services.github.email || user._id)}});
           }
         });
       }
