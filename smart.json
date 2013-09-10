@@ -3,6 +3,7 @@
     "crypto-md5": {},
     "animation": {},
     "moment": {},
-    "npm": {}
+    "npm": {},
+    "jquery-ui": {}
   }
 }

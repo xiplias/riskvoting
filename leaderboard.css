@@ -18,9 +18,14 @@ body {
   font-size: ;
 }
 
+.votesLeft {
+  padding-top: 5px;
+  font-size: 1.4em;
+}
+
 .rumor {
   width: 260px;
-  height: 90px;
+  height: 100px;
   background: #ecf0f1;
   float: left;
   margin: 10px;
@@ -31,8 +36,8 @@ body {
 
 }   
 
-.rumor-avatar {
-  border-radius: 2px;
+.avatar {
+  border-radius: 3px;
 }
 
 .rumor-top {
@@ -43,12 +48,13 @@ body {
 .rumor-name {
   font-size: 1.5em;
   color: #2c3e50;
+  height: 45px;
 }
 
 .myvote {
   border: 3px #2c3e50 solid;
   width: 254px;
-  height: 83px;
+  height: 93px;
 }
 
 .validated {
@@ -94,5 +100,19 @@ body {
 }
 
 .leaderboarding {
+  padding: 40px 0;
   text-align: left;
+  font-size: 1.4em;
+}
+
+table {
+  width: 100%;
+}
+
+td {
+  padding: 5px;
+}
+
+.user-avatar {
+  width: 50px;
 }

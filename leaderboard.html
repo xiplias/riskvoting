@@ -5,12 +5,6 @@
 <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
   <script type="text/javascript" src="/jquery.timeago.js"></script>
   <script type="text/javascript" src="/color.js"></script>
-  <script type="text/javascript">
-    jQuery(document).ready(function() {
-      jQuery.timeago.settings.allowFuture = true;
-     $("abbr.timeago").timeago();
-    });
-  </script>
 </head>
 
 <body>
@@ -21,51 +15,37 @@
  <div class="leaderboard">
     <div>
       <h1>Keynote bingo</h1>
-      Keynote in
-        <abbr class="timeago" title="2013-09-10T16:00:17Z">September 10, 2013</abbr>
+        <abbr class="timeago" title="2013-09-10T16:00:17Z">September 10, 2013 19.00 CET</abbr>
         <br>
         
-        <div>{{votesLeft}} votes left</div>
+        <div class="votesLeft">{{votesLeft}} votes left</div>
 
     </div>
     <div class="leaderboarding">
-    {{> leaderboard}}
+      {{> leaderboard}}
+    </div>
     {{#if currentUser.isAdmin}}
       {{> addRumor}}
     {{/if}}
-      </div>
     {{loginButtons}}
   </div>
   <div class="rumors">
-        {{> rumors}} 
+    {{> rumors}} 
   </div>  
 </template>
 
 
 <template name="leaderboard">
-
     <table>
       {{#each users}}
         <tr>
+          <td class="user-avatar"><img src="{{avatar}}" width="50" class="avatar"></td>
           <td class="user-name">{{profile.name}}</td>
           <td class="user-score">{{score}}</td>
         </tr>
       {{/each}}
     </table>
-
-
-
-<!--   {{#if selected_name}}
-  <div class="details">
-    <div class="name">{{selected_name}}</div>
-    <input type="button" class="inc" value="Give 5 points" />
-  </div>
-  {{/if}}
-
-  {{#unless selected_name}}
-  <div class="none">Click a rumor to select</div>
-  {{/unless}}
- --></template>
+</template>
 
 <template name="rumors">
   {{#each rumors}}
@@ -78,7 +58,7 @@
       <div class='rumor-users'>
         <span class='rumor-total-votes'>{{totalVotes}} Votes
         {{#each votes}}
-          <img src='{{avatar}}' width="30" class="rumor-avatar">
+          <img src='{{avatar}}' width="30" class="avatar">
         {{/each}}
       </div>
     </div>

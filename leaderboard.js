@@ -1,11 +1,20 @@
 // Set up a collection to contain rumor information. On the server,
 // it is backed by a MongoDB collection named "rumors".
 
+var avatar = function (id) {
+  var email = Meteor.users.findOne({_id: id}).services.github.email
+  return "http://www.gravatar.com/avatar/" + CryptoJS.MD5(email)
+}
+
 Rumors = new Meteor.Collection("rumors");
 
 if (Meteor.isClient) {
   Template.leaderboard.users = function () {
     return Meteor.users.find({}, {sort: {score: -1}});
+  }
+
+  Template.leaderboard.avatar = function () {
+    return avatar(this._id);
   }
 
   Template.content.votesLeft = function () {
@@ -55,7 +64,10 @@ if (Meteor.isClient) {
   Template.rumors.events({
     'click .rumor': function (event) {
       Meteor.call('toggleVote', this, function () {
-        console.log(this);
+        Meteor.defer(function () {
+          $("#" + this._id).hide();
+
+        });
       });
 
       return false;
@@ -68,13 +80,9 @@ if (Meteor.isClient) {
     }
   });
 
-
-  Template.rumors.helpers({
-    avatar: function (t) {
-      email = Meteor.users.findOne().services.github.email
-      return "http://www.gravatar.com/avatar/" + CryptoJS.MD5(email)
-    }
-  })
+  Template.rumors.avatar = function () {
+    return avatar(this.toString());
+  }
 }
 
 // On server startup, create some rumors if the database is empty.
@@ -141,6 +149,11 @@ if (Meteor.isServer) {
   })
 
   Meteor.startup(function () {
-
+    Meteor.defer(function () {
+       jQuery(document).ready(function() {
+      jQuery.timeago.settings.allowFuture = true;
+     $("abbr.timeago").timeago();
+    });
+    });
   });
 }
