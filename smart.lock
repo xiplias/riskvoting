@@ -1,0 +1,38 @@
+{
+  "meteor": {},
+  "dependencies": {
+    "basePackages": {
+      "crypto-md5": {},
+      "animation": {},
+      "moment": {},
+      "npm": {}
+    },
+    "packages": {
+      "crypto-md5": {
+        "git": "https://github.com/tmeasday/meteor-crypto-md5.git",
+        "tag": "v0.0.2",
+        "commit": "a943bea4cffeac9a14c2825dfe57d32b9d677e6f"
+      },
+      "animation": {
+        "git": "https://github.com/Rebolon/meteor-animation.git",
+        "tag": "v0.1.1",
+        "commit": "227fe18a83961adb8effa54b8e1f51ee529fbd2e"
+      },
+      "moment": {
+        "git": "https://github.com/possibilities/meteor-moment.git",
+        "tag": "v1.7.0",
+        "commit": "c64b6ec0e714b9556f4b6643d430b868ba69d3d7"
+      },
+      "npm": {
+        "git": "https://github.com/arunoda/meteor-npm.git",
+        "tag": "v0.2.2",
+        "commit": "ad83acff83385d5ea05997c8bbc2d7493ba4c04e"
+      },
+      "crypto-base": {
+        "git": "https://github.com/tmeasday/meteor-crypto-base.git",
+        "tag": "v0.0.3",
+        "commit": "fdc0b7b3d24e2e31c5c95beddafe890ffbaafd42"
+      }
+    }
+  }
+}

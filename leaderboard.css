@@ -1,0 +1,98 @@
+body {
+    font-family: "proxima-nova";
+    margin: 50px 0;
+    padding: 0;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    background: #bdc3c7;
+}
+
+.clear {
+  clear: both;
+}
+
+.user {
+  font-size: ;
+}
+
+.rumor {
+  width: 260px;
+  height: 90px;
+  background: #ecf0f1;
+  float: left;
+  margin: 10px;
+  padding: 20px;
+  color: #2c3e50;
+  font-size: 1.3em;
+  font-weight: 300;
+
+}   
+
+.rumor-avatar {
+  border-radius: 2px;
+}
+
+.rumor-top {
+  font-weight: 500;
+  padding-bottom: 5px;
+}
+
+.rumor-name {
+  font-size: 1.5em;
+  color: #2c3e50;
+}
+
+.myvote {
+  border: 3px #2c3e50 solid;
+  width: 254px;
+  height: 83px;
+}
+
+.validated {
+  background: #54d98c;
+}
+
+.rumor-risk {
+  color: #c0392b;
+}
+
+.toggleConfirm {
+  background: #1abc9c;
+  width: 22px;
+  padding: 3px;
+  position: absolute;
+  margin-left: 242px;
+  margin-top: -10px;
+}
+
+
+.rumor-users {
+  padding-top: 10px;
+}
+
+.leaderboard {
+  background: #2c3e50;
+  color: #fff;
+  position: absolute;
+  left: 0;
+  width: 25%;
+  top: 0;
+  bottom: 0;
+  text-align: center;
+  padding: 2%;
+}
+
+.rumors {
+  position: absolute;
+  margin-left: 30%;
+  top: 0;
+  right: 0;
+  width: 70%;
+}
+
+.leaderboarding {
+  text-align: left;
+}
