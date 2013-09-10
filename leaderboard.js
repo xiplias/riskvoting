@@ -43,7 +43,7 @@ if (Meteor.isClient) {
   Template.addRumor.events({
     'click #rumor_submit': function (events) {
       console.log('test');
-      if (Meteor.user().isAdmin) {
+      if (Meteor.user().isAdmin && $('#rumor_name').val() !== "" && $('#rumor_risk').val() !== "") {
         Rumors.insert({
           name: $('#rumor_name').val(),
           risk: $('#rumor_risk').val()
