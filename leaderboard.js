@@ -3,7 +3,7 @@
 
 var avatar = function (id) {
   var email = Meteor.users.findOne({_id: id}).services.github.email
-  return Meteor.user().avatar || "http://www.gravatar.com/avatar/" + CryptoJS.MD5(email)
+  return Meteor.user().avatar
 }
 
 Rumors = new Meteor.Collection("rumors");
@@ -24,7 +24,7 @@ if (Meteor.isClient) {
   }
 
   Template.content.updateAvatar = function () {
-    if(Meteor.user()) {
+    if(Meteor.user() && Meteor.user().avatar === undefined) {
       Meteor.calculateScore('updateAvatar', "http://www.gravatar.com/avatar/" + CryptoJS.MD5(Meteor.user().services.github.email));
     }
   }
