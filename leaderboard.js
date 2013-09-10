@@ -19,6 +19,10 @@ if (Meteor.isClient) {
     }
   }
 
+  Template.content.rendered = function () {
+    jQuery("abbr.timeago").timeago();
+  }
+
   Template.leaderboard.users = function () {
     return Meteor.users.find({}, {sort: {score: -1}});
   }
