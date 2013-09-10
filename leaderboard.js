@@ -147,13 +147,4 @@ if (Meteor.isServer) {
       }
     }
   })
-
-  Meteor.startup(function () {
-    Meteor.defer(function () {
-       jQuery(document).ready(function() {
-      jQuery.timeago.settings.allowFuture = true;
-     $("abbr.timeago").timeago();
-    });
-    });
-  });
 }
