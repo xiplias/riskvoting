@@ -1,9 +1,6 @@
 {
   "packages": {
     "crypto-md5": {},
-    "animation": {},
     "moment": {},
-    "npm": {},
-    "jquery-ui": {}
   }
 }
