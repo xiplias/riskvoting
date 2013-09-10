@@ -2,7 +2,6 @@
 // it is backed by a MongoDB collection named "rumors".
 
 var avatar = function (id) {
-  var email = Meteor.users.findOne({_id: id}).services.github.email
   return Meteor.users.findOne({_id: id}).avatar
 }
 
