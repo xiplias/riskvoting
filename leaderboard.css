@@ -85,7 +85,7 @@ body {
 .leaderboard {
   background: #2c3e50;
   color: #fff;
-  position: absolute;
+  position: fixed;
   left: 0;
   width: 25%;
   top: 0;
