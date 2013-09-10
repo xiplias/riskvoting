@@ -95,7 +95,7 @@ if (Meteor.isClient) {
   Template.rumors.avatarName = function () {
 
     var user = Meteor.users.findOne({_id: this.toString()});
-    
+
     if(user && user.profile) {
       return user.profile.name
     }
@@ -164,18 +164,15 @@ if (Meteor.isServer) {
       console.log('avatar')
       Meteor.users.update({_id: Meteor.user()._id}, {$set: {avatar: url}});
     },
-    massAvatarUpdate: function () {
-      Meteor.users.find({}).forEach(function (user) {
-        res = Meteor.http.call("GET", "https://api.github.com/user", {
-          params: {
-            access_token: user.services.github.accessToken
-          },
-          headers: {
-            "User-Agent": "Meteor"
+    massAvatarUpdate: function (go) {
+      if(Meteor.user().isAdmin) {
+        Meteor.users.find({}).forEach(function (user) {
+          console.log(user.services.github.email, user._id, user.services.github.email || user._id);
+          if(go) {
+            Meteor.users.update({_id: user._id}, {$set: {avatar: "http://www.gravatar.com/avatar/" + CryptoJS.MD5(user.services.github.email)}});
           }
         });
-        Meteor.users.update({_id: user._id}, {$set: {avatar: res.data.avatar_url}})
-      });
+      }
     }
   })
 }
