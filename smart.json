@@ -2,6 +2,7 @@
   "packages": {
     "crypto-md5": {},
     "moment": {},
-    "event-hooks": {}
+    "event-hooks": {},
+    "iron-router": {}
   }
 }

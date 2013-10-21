@@ -1,0 +1,11 @@
+<template name="leaderboard">
+  <table>
+    {{#each users}}
+      <tr>
+        <td class="user-avatar"><img src="{{avatar}}?d=retro" width="50" class="avatar"></td>
+        <td class="user-name">{{profile.name}}</td>
+        <td class="user-score">{{score}}</td>
+      </tr>
+    {{/each}}
+  </table>
+</template>

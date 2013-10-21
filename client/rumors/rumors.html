@@ -1,0 +1,20 @@
+<template name="rumors">
+  <div class="rumors">
+    {{#each rumors}}
+      <div class="rumor {{#if hasMyVote}}myvote{{/if}} {{#if isValidated}}validated{{/if}}" id="{{_id}}">
+        {{#if currentUser.isAdmin}}
+          <div class="toggleConfirm">CT</div>
+        {{/if}}
+        <div class='rumor-top'><span class="rumor-risk">{{risk}} Risk points</span></div>
+        <div class="rumor-name">{{name}}</div>
+        <div class='rumor-users'>
+          <span class='rumor-total-votes'>{{totalVotes}} Votes</span>
+          {{#each votes}}
+            <img src='{{avatar}}?d=retro' width="30" class="avatar" alt="{{avatarName}}">
+          {{/each}}
+        </div>
+      </div>
+    {{/each}}
+    <div class="clear"></div>
+  </div>
+</template>

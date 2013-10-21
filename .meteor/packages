@@ -14,7 +14,9 @@ jquery
 bootstrap
 underscore
 crypto-md5
-animation
-npm
 event-hooks
 http
+moment
+crypto-base
+
+iron-router

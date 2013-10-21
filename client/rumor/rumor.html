@@ -1,0 +1,17 @@
+<template name="rumor">
+  <div class="rumors">
+    <div class="rumorBox">
+      <a href="/">Back to overview</a>
+      <div class='rumor-top'><span class="rumor-risk">{{this.risk}} Risk points</span></div>
+      <button id="vote" class="{{voteStatus}}">{{voteStatus}}</button>
+      <h1>{{this.name}}</h1>
+      <div class='rumor-users'>
+        <span class='rumor-total-votes'>{{totalVotes}} Votes</span>
+        {{#each this.votes}}
+          <img src='{{avatar}}?d=retro' width="30" class="avatar" alt="{{this.avatarName}}">
+        {{/each}}
+      </div>
+      <div>
+    </div>
+  </div>
+</template>
