@@ -114,3 +114,9 @@ td {
 .user-avatar {
   width: 50px;
 }
+
+.leaderboards {
+  padding: 30px;
+  width: 420px;
+  font-size: 1.5em;
+}
