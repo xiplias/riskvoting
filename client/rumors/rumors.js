@@ -4,11 +4,10 @@ Template.rumors.isValidated = function () {
 
 Template.rumors.events({
   'click .rumor': function (event) {
-    Router.go('/rumors/' + this._id);
 
-    // Meteor.call('toggleVote', this, function () {
+    Meteor.call('toggleVote', this, function () {
 
-    // });
+    });
 
     return false;
   },
