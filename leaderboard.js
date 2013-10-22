@@ -75,26 +75,28 @@ if (Meteor.isServer) {
 
   Meteor.methods({
     toggleVote: function (rumor) {
-      var user = Meteor.user();
-      var votes = rumor.votes || [];
-      var voteCount = user.voteCount || 0;
+      if(new Date() < new Date("2013-10-22T17:00:00.000Z")) {
+        var user = Meteor.user();
+        var votes = rumor.votes || [];
+        var voteCount = user.voteCount || 0;
 
-      if (user && voteCount < 5 && !_.include(votes, user._id)) {
-        votes.push(user._id);
+        if (user && voteCount < 5 && !_.include(votes, user._id)) {
+          votes.push(user._id);
 
-        Rumors.update({_id: rumor._id}, {$set: { votes: votes }});
-        Meteor.users.update({_id: user._id}, {$set: { voteCount: voteCount+1}})
-        console.log('vote registered');
-      } else {
-        var count = votes.length;
-        var votes = _.without(votes, user._id);
-
-        if(votes.length < count) {
           Rumors.update({_id: rumor._id}, {$set: { votes: votes }});
-          Meteor.users.update({_id: user._id}, {$set: { voteCount: voteCount-1}})
-        }
+          Meteor.users.update({_id: user._id}, {$set: { voteCount: voteCount+1}})
+          console.log('vote registered');
+        } else {
+          var count = votes.length;
+          var votes = _.without(votes, user._id);
 
-        console.log('vote removed');
+          if(votes.length < count) {
+            Rumors.update({_id: rumor._id}, {$set: { votes: votes }});
+            Meteor.users.update({_id: user._id}, {$set: { voteCount: voteCount-1}})
+          }
+
+          console.log('vote removed');
+        }
       }
     },
     toggleValidate: function (rumor) {
